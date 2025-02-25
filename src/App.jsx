@@ -1,11 +1,27 @@
-import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import NavLayoutComponent from "./components/NavLayoutComponent";
+import AboutPage from "./pages/AboutPage";
+import HomePage from "./pages/HomePage";
+import MealsPage from "./pages/MealsPage";
+import MealDetailsPage from "./pages/MealDetailsPage";
+import ErrorPage from "./pages/ErrorPage";
 
 import "./App.css";
 
 function App() {
   return (
     <>
-      <div className="text-3xl font-bold underline bg-red-600 w-100 h-100"></div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<NavLayoutComponent />}>
+            <Route index element={<HomePage />} />
+            <Route path="about" element={<AboutPage />} />
+            <Route path="meals" element={<MealsPage />} />
+            <Route path="meals/:id" element={<MealDetailsPage />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
